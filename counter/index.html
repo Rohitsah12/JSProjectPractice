@@ -3,9 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Counter</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .counter{
+            margin: 20px;
+            font-size: 70px;
+            font-weight:  bold;
+        }
+        .incrementDecrement button{
+            cursor: pointer;
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 2px;
+            background-color: aqua;
+        }
+        .input{
+            margin-top: 20px;
+        }
+        .reset{
+            margin: 10px;
+            width: 80px;
+            background-color: aqua;
+            height: 35px;
+            border:1px solid black;
+            border-radius: 5px;
+        }
+        .input input{
+            width: 50px;
+        }
+        
+    </style>
 </head>
 <body>
-    
+    <div class="counter" id="counter">0</div>
+    <div class="incrementDecrement">
+        <button class="decrement" id="decrement">-</button>
+        <button class="increment" id="increment">+</button>
+    </div>
+    <div class="input">
+        <label>
+            Increment/Decrement by: 
+            <input type="number" id="incrementBy" min="1" value="1" >
+        </label>
+    </div>
+    <br>
+    <button class="reset" id="reset">Reset</button>
+    <script>
+        const increment=document.getElementById('increment');
+        const decrement=document.getElementById('decrement');
+        const counter=document.getElementById('counter');
+        const INCDECBy=document.getElementById('incrementBy');
+        const reset=document.getElementById('reset');
+        let incdecBy=parseInt(INCDECBy.value);
+
+        INCDECBy.addEventListener('click',()=>{
+            incdecBy=parseInt(INCDECBy.value);
+        })
+        increment.addEventListener('click',()=>{
+            const countValue=parseInt(counter.innerText);
+            counter.innerText=countValue+incdecBy;
+        })
+        decrement.addEventListener('click',()=>{  
+            const countValue=parseInt(counter.innerText);
+            counter.innerText=countValue-incdecBy;
+        });
+        reset.addEventListener('click',()=>{
+            counter.innerText=0;
+        })
+
+
+        
+        
+    </script>
 </body>
+
 </html>
