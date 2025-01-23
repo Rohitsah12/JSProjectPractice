@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Numbers</title>
+    <style>
+        p{
+            font-size: 30px;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input{
+            margin: 20px;
+            height: 30px;
+            width: 200px;
+        }
+        .start-btn{
+            background-color: aqua;
+            border: 1px solid black;
+            height: 40px;
+            width: 100px;
+            border-radius: 5px;
+        }
+        input::placeholder{
+            font-size: 20px;
+        }
+        .btn{
+            margin-left:50px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <p>Enter a guess between 0 to 100</p>
+    <form action="" id="form">
+        <input type="number" name="number" id="numberInput" placeholder="Enter a number" required min="0" max="100" autofocus>
+        <div class="btn">
+            <input  type="submit"class="submit-btn" id="submitBtn" value="submit" />
+            <button disabled class="start-btn" id="startGame">Start Game</button>
+        </div>
+        <div>
+            <p><output id="output"></output></p>
+            <p><output id="guessDisplay"></output></p>
+          </div>
+    </form>
+
+    
+    <script>
+        const form=document.getElementById('form');
+        const input= document.getElementById('numberInput');
+        const submit=document.getElementById('submitBtn');
+        const startGame=document.getElementById('startGame');
+        const output=document.getElementById('output');
+        const guessDisplay=document.getElementById("guessDisplay");
+        let guessArray=[];
+        let computerGuess;
+        function onGameStart(){
+            output.textContent='';
+            guessDisplay.textContent='';
+            guessArray=[];
+            computerGuess=Math.round(Math.random()*100);
+
+            startGame.disabled=true;
+            input.disabled=false;
+            submit.disabled=false;
+
+            input.focus();
+        }
+        function onGamefinish(message){
+            output.textContent=message;
+            input.disabled=true;
+            submit.disabled=true;
+            startGame.disabled=false;
+            startGame.focus();
+        }
+        function onInput(e){
+            e.preventDefault();
+            const guess=+input.value;
+            console.log(guess);
+            
+            input.value='';
+            guessArray.push(guess);
+            guessDisplay.textContent=`Your guesses: ${guessArray.join(',')}`;
+
+            if(guess>computerGuess){
+                output.textContent='Too High';
+            }
+            else if(guess<computerGuess){
+                output.textContent='Too Low';
+            }
+            else{
+                onGamefinish("You got it! congrats");
+                return;
+            }
+            input.focus();
+            if(guessArray.length>=10){
+                onGamefinish('You lost! The Number Was'+ computerGuess);
+            }
+        }
+        form.addEventListener('submit',onInput);
+        startGame.addEventListener('click',onGameStart);
+        onGameStart();
+
+    </script>
+</body>
+</html>
