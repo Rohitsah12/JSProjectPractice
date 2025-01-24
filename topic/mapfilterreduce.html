@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Map filter and Reduce
+    <script>
+        const months=["January","February","march","April","may","December"]
+
+        // const capitalMonths=months.forEach((month,i)=>{
+        //     console.log(i+1,month);
+        //     return month.toUpperCase();
+        // })
+        // console.log(capitalMonths);
+
+        // const capitalMonths=months.map((month,i, array)=>{
+        //     console.log(i+1,month);
+        //     // console.log(array);
+        //     return month.toUpperCase();
+        // })
+        // console.log(capitalMonths);
+        
+
+        // const filterMonths=months.filter((month,i)=>{
+        //     console.log(i+1,month);
+        //     return  month.includes('m') ;
+        // })
+        // console.log(filterMonths);
+        
+
+        // const students=[
+        //     {
+        //         name:'Akash',
+        //         age:21
+        //     },
+        //     {
+        //         name:"Adarsh",
+        //         age:17
+        //     },
+        //     {
+        //         name:"Amir",
+        //         age:18
+        //     },
+        //     {
+        //         name:"Raman",
+        //         age:25
+        //     },
+        //     {
+        //         name:"Nidhi",
+        //         age:15
+        //     }
+        // ]
+        // const maturedStudents=students.filter((student)=>{
+        //     return student.age>=18;
+        // })
+        // console.log(maturedStudents);
+        
+        // const adultStudentName=maturedStudents.map((student)=>{
+        //     return student.name;
+        // })
+        
+
+        const nums=[1,2,3,4,5]
+        console.log(nums.reduce((accumulator,current)=>{
+            // console.log(current);
+            console.log(accumulator);
+            return current+accumulator;
+        },10 ))
+
+        // ["JANUARY","FEBRUARY","MARCH","APRIL","MAY"]
+    </script>
+</body>
+</html>
