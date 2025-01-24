@@ -17,18 +17,19 @@
     </style>
 </head>
 <body>
-    <input type="number" class="input" id="input" placeholder="Mobile Number">
+    <input type="text" class="input" id="input" placeholder="Mobile Number" maxlength="16">
     <p class="format" id="format">+(123)-4567890</p>
     <script>
         const input=document.getElementById('input');
         const format=document.getElementById('format');
-
-        input.addEventListener('input',()=>{
-            if(input.value.length>2){
-                
+        
+        input.addEventListener('input',(e)=>{
+            e.preventDefault();
+            const inputValue=e.target.value;
+            if(inputValue.length===4){
+                input.value = `+(${inputValue.substring(0,3)}) - ${inputValue[inputValue.length -1 ]}` 
             }
         })
-
         
     </script>
 </body>
