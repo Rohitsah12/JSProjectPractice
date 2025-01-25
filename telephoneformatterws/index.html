@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telephone Formatters</title>
     <style>
-        body{
+        body {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .input{
+        .input {
             height: 30px;
             width: 200px;
         }
@@ -20,17 +20,23 @@
     <input type="text" class="input" id="input" placeholder="Mobile Number" maxlength="16">
     <p class="format" id="format">+(123)-4567890</p>
     <script>
-        const input=document.getElementById('input');
-        const format=document.getElementById('format');
-        
-        input.addEventListener('input',(e)=>{
-            e.preventDefault();
-            const inputValue=e.target.value;
-            if(inputValue.length===4){
-                input.value = `+(${inputValue.substring(0,3)}) - ${inputValue[inputValue.length -1 ]}` 
+        const input = document.getElementById('input');
+        let previousValue = '';
+
+        input.addEventListener('input', (e) => {
+            let inputValue = e.target.value;
+            if (!/^\+?[\d\(\)\-\s]*$/.test(inputValue)) {
+                input.value = previousValue;
+                return;
             }
-        })
-        
+            if (inputValue.length === 4 && previousValue.length < inputValue.length) {
+                input.value = `+(${inputValue.substring(0, 3)}) - ${inputValue[3]}`;
+            } else if (inputValue.length === 9 && previousValue.length > inputValue.length) {
+                inputValue = inputValue.replace(/[^\d]/g, ''); // Remove non-numeric characters
+                input.value = inputValue.substring(0, 3);
+            }
+            previousValue = input.value;
+        });
     </script>
 </body>
 </html>
