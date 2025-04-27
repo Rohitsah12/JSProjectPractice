@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Script>
+        function loadContent(){
+            console.log("loaded");
+            window.document.images[0].src='../image.png'
+            window.document.forms[0].elements[1].textContent="Register";
+            window.document.forms[0].elements[0].value="Sachin";
+            window.document.forms[1].elements[1].textContent="Email"; 
+            window.document.forms[1].elements[0].value="Sachin@gmail.com"; 
+            
+        }
+    </Script>
+</head>
+<body onload="loadContent()">
+    <div>
+        <img alt="" height="200" width="200" border="1">
+    </div>
+    <div>
+        <form>
+            <h3>Register</h3>
+            User name: <input type="text"> <button></button>
+        </form>
+    </div>
+    <div>
+        <form>
+            <h3>Login</h3>
+            Email: <input type="text"> <button></button>
+        </form>
+    </div>
+</body>
+</html>
