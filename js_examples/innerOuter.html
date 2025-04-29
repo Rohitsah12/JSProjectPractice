@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function deleteContent(){
+            flg=confirm("Delete??");
+            if(flg){
+                document.querySelector("h2").outerHTML="<h3>Update</h3>";
+            }
+            else{
+                document.querySelector("p").outerHTML="<h3>Update</h3>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2></h2>
+    <p></p>
+    <button type="button" onclick="deleteContent()">Delete</button>
+</body>
+</html>

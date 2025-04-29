@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book My Show</title>
+    <!-- Bootstrap 3.3.7 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="container-fluid">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-danger mt-3"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Quick Booking
+    </button>
+
+    <div id="displaySummary" style="display: none">
+      <div
+        style="
+          background-color: black;
+          color: white;
+          padding: 5px;
+          margin: 10px;
+          width: 150px;
+        "
+      >
+        Booking Summary
+      </div>
+      <img id="poster" height="200px" width="200px" style="margin: 10px" />
+      <div style="font-weight: bold; margin: 10px">
+        <p id="lblMovies"></p>
+        <p id="lblLocation"></p>
+        <p id="lblDate"></p>
+        <p id="lblTime"></p>
+        <p id="lblScreen"></p>
+        <p id="lblSeats"></p>
+      </div>
+      <a
+        href=""
+        style="margin: 30px"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        >Modify Booking</a
+      >
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialogue modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- Bootstrap 3 uses <h4> for modal-title -->
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title" id="exampleModalLabel">Quick Booking</h4>
+          </div>
+          <div class="modal-body" style="background-color: black; color: white">
+            <form class="form-inline text-center">
+              <div class="form-group .bg-dark">
+                <select class="form-control" id="movie">
+                  <option>Select Movie</option>
+                  <option>Movie A</option>
+                  <option>Movie B</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <select class="form-control" id="cinema">
+                  <option>Select Cinema</option>
+                  <option>Cinema X</option>
+                  <option>Cinema Y</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <select class="form-control" id="date">
+                  <option>Select Date</option>
+                  <option>April 29</option>
+                  <option>April 30</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <select class="form-control" id="time">
+                  <option>Select Time</option>
+                  <option>10:00 AM</option>
+                  <option>2:00 PM</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <select class="form-control" id="seats">
+                  <option>Select Seats</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-danger"
+                onclick="bookTicket(event)"
+                data-dismiss="modal"
+              >
+                Book
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function bookTicket(e) {
+        e.preventDefault();
+        console.log("Book clicked");
+
+        document.getElementById("displaySummary").style.display = "block";
+
+        // console.log(document.getElementById("movie").value);
+        // console.log(document.getElementById("cinema").value);
+        // console.log(document.getElementById("date").value);
+        // console.log(document.getElementById("time").value);
+        // console.log(document.getElementById("seats").value);
+        document.getElementById("poster").src="../image.png";
+
+        
+
+        document.getElementById("lblMovies").textContent =
+          document.getElementById("movie").value;
+        document.getElementById("lblLocation").textContent =
+          document.getElementById("cinema").value;
+        document.getElementById("lblDate").textContent =
+          document.getElementById("date").value;
+        document.getElementById("lblTime").textContent =
+          document.getElementById("time").value;
+        document.getElementById("lblSeats").textContent =
+          document.getElementById("seats").value;
+        document.getElementById("lblScreen").textContent ="Screen1"
+
+      }
+    </script>
+    <!-- Add jQuery (required) BEFORE Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap 3 JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
