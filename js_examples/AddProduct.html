@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><Address></Address> Product</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+  <button
+    type="button"
+    class="btn btn-primary mt-3"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    id="btnAdd"
+  >
+    ADD PRODUCT
+  </button>
+
+
+  <div class="productDetails mt-3 ms-3" style="display: none;" id="detailsContainer">
+    <h1 class="bg-dark text-light w-25 p-3">Product Details</h1>
+    <dl>
+      <dt >Name</dt>
+      <dd id="lblName"></dd>
+  
+      <dt>Price</dt>
+      <dd id="lblPrice"></dd>
+  
+      <dt>City</dt>
+      <dd id="lblCity"></dd>
+  
+      <dt>Stock</dt>
+      <dd id="lblStock"></dd>
+    </dl>
+    <button class="bi bi-pen-fill bg-warning border-0 p-2 rounded" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editProduct()">Edit</button>
+  </div>
+  
+
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Your content goes here -->
+          <div class="modal-body px-4 py-3">
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" id="productName">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Price</label>
+              <input type="number" class="form-control" id="productPrice">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Shipped To</label>
+              <select class="form-select" id="productCity">
+                <option>Select City</option>
+                <option>Bangalore</option>
+                <option>Mumbai</option>
+                <option>Patna</option>
+                <option>Delhi</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label d-block">Stock</label>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="radio" name="stock" id="optStock">Available
+              </div>
+            </div>
+          </div>
+        
+
+      </div>
+      <div class="modal-footer">
+        <button class="bg-primary border-0 p-2 ronded" data-bs-dismiss="modal" aria-label="Close" onclick="addProduct()" id="btnRegister">Register</button>
+        <button class="bg-danger border-0 p-2 rounded" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+    </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Bootstrap Bundle includes Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function addProduct(){
+        document.getElementById("detailsContainer").style.display='block';
+        document.getElementById("btnAdd").style.display="None";
+        document.getElementById("lblName").textContent =document.getElementById("productName").value;
+        document.getElementById("lblPrice").textContent =document.getElementById("productPrice").value;
+        document.getElementById("lblCity").textContent =document.getElementById("productCity").value;
+        optStock=document.getElementById("optStock");
+        availabiltiy='';
+        if(optStock.checked){
+            availabiltiy='Stock Available'
+        }
+        else{
+            availabiltiy='Out of Stock'
+        }
+        document.getElementById('lblStock').textContent=availabiltiy;
+    }
+
+    function editProduct(){
+        document.getElementById("exampleModalLabel").innerHTML="<h5>Edit Product</h5>"
+        button=document.getElementById("btnRegister");
+        button.textContent="SAVE";
+        button.className="btn btn-success";
+        
+    }
+  </script>
+  
+</body>
+</html>
