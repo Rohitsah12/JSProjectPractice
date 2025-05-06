@@ -4,50 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        // console.log(x);
-        // console.log(getName);
-        // getName();
-        // // console.log(getName1);
-        // // getName1();
-
-        
-        
-        
-
-        // var x=3;
-        // function getName(){
-        //     console.log("PW ioi Js");
-        // }
-
-        // var getName1=function(){
-        //     console.log("PW IOI React");
-        // }
-
-        // var getName2=()=>{
-        //     console.log("PW IOI Node.js");
-        // }
-        // console.log(getName2);
-
-        // getName2();
-
-        function a(){
-            var b=3;
-            c();
-            function c(){
-                console.log(b);
-                d();
-                function d(){
-                    console.log(b);
-                    
-                }
-            }
-        }
-        a();
-        
-    </script>
 </head>
 <body>
     
+    <script type="text/javascript">
+
+        let str = "Hello";
+        console.log(str); // Hello
+        str[0] = 'Y';
+        console.log(str); // immutable, still "Hello"
+        console.log(typeof str); // string
+
+
+        let myData = 10;
+        myData.id = "Roll_number";
+        console.log(myData); // immutable, still 10
+
+
+        let obj = {
+            id : 10,
+        } 
+        console.log(obj); // mutable, { id: 10 }
+
+
+        obj.name = "Hided";
+        console.log(obj); // mutable, { id: 10, name: 'Hided' }
+
+        obj.id = {country: "India", type:"cricket"};
+        console.log(obj); // mutable, { id: { country: 'India', type: 'cricket' }, name: 'Hided' }
+
+        console.log(typeof obj); // object
+
+        delete obj.id;
+        console.log(obj); // mutable, { name: 'Hided' }
+        
+    </script>
 </body>
 </html>
