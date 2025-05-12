@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function validateOtp(){
+            const data=document.getElementById("txtOtp");
+            const msg=document.getElementById("msg");
+
+            if(data.value==='3456'){
+                msg.innerHTML='OTP VALID'.fontcolor('green').fontsize(16).bold();
+            }else{
+                msg.textContent='OTP INVALID';
+                msg.style.cssText='color:red, fontsize:16px, fontweight:bold';
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Enter Otp</dt>
+        <dd><input type="text" id="txtOtp" onblur="validateOtp()"></dd>
+        <dd id="msg"></dd>
+    </dl>
+    
+</body>
+</html>
