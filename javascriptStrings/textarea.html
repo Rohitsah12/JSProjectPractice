@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Counter</title>
+
+  <script type="text/javascript">
+    function verifyChars() {
+      const comments = document.getElementById("userComments");
+      const msg = document.getElementById("msg");
+
+      let maxChars = 20;
+      let typedChars = comments.value.length;
+      let remaining = maxChars - typedChars;
+
+      msg.innerHTML = `You have ${remaining} characters left.`.bold();
+    }
+  </script>
+</head>
+<body>
+  <fieldset>
+    <legend>Your Comments</legend>
+    <small>Note: max 20 characters</small>
+    <br><br>
+    <textarea id="userComments" onkeyup="verifyChars()" rows="4" cols="40" maxlength="20"></textarea>
+    <br>
+    <span id="msg"></span>
+  </fieldset>
+</body>
+</html>

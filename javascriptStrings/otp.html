@@ -16,10 +16,16 @@
                 msg.style.cssText='color:red, fontsize:16px, fontweight:bold';
             }
         }
+        function changeToUpperCase(){
+            const userName=document.getElementById('txtName');
+            userName.value=userName.value.toUpperCase();
+        }
     </script>
 </head>
 <body>
     <dl>
+        <dt>Enter the UserName</dt>
+        <dd><input type="text" id="txtName" onblur="changeToUpperCase()"></dd>
         <dt>Enter Otp</dt>
         <dd><input type="text" id="txtOtp" onblur="validateOtp()"></dd>
         <dd id="msg"></dd>
