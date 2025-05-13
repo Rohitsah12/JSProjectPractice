@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <dl>
+        <dt>Email</dt>
+        <dd><input type="text" id="txtName" onblur="verifyEmail()"/></dd>
+        <dd id="error-msg"></dd>
+    </dl>
+    <script>
+        function verifyEmail(){
+            const txtName=document.getElementById('txtName');
+            const msg=document.getElementById('error-msg');
+
+            let flg=txtName.value.indexOf('@');
+
+            if(flg==-1){
+                msg.innerHTML='Invalid Email'.fontcolor('red');
+            }
+            else{
+                flg=txtName.value.endsWith('@gmail.com');
+                if(flg){
+                    msg.innerHTML='';
+                }else{
+                    msg.innerHTML='Only gmail is allowed'.fontcolor('red');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
