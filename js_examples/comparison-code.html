@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function validatePwd(){
+            const pwd=document.getElementById('pwd');
+            const cnfPwd=document.getElementById('cnfPwd');
+            const msg=document.getElementById('msg');
+            if(pwd.value===cnfPwd.value){
+                msg.innerHTML='Password matched'
+            }
+            else{
+                msg.innerHTML='Password missmatched'
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>
+            Password
+        </dt>
+        <dd>
+            <input type="password" name="" id="pwd">
+        </dd>
+        <dt>
+            Confirm Password
+        </dt>
+        <dd>
+            <input type="password" name="" id="cnfPwd" onblur="validatePwd()">
+        </dd>
+    </dl>
+    <p id="msg"></p>
+</body>
+</html>
