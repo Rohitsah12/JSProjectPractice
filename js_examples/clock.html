@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function printDate(){
+            const input=document.getElementById('inp');
+            console.log(typeof input.value);
+            const today = new Date().toISOString().split('T')[0];
+            console.log(today); // e.g., "2025-05-28"
+
+            
+            
+        }
+    </script>
+</head>
+<body>
+    <input type="date"  id="inp"/>
+    <button onclick="printDate()">click</button>
+
+</body>
+</html>
