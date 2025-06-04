@@ -1,71 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Array Manipulation</title>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-  />
-  <style>
-    .container-box {
-      width: 30%;
-      margin: 40px auto;
-    }
-    .inline-form {
-      display: flex;
-      gap: 10px;
-    }
-    .form-control {
-      flex: 1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manipulation</title>
+
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- Script code-->
+     <script type="text/javascript">
+         
+         let cities = ['Bengaluru','Hyderabad'];
+
+         function loadCities() {
+                const cityName = document.getElementById("lstCities");
+                const cityCount = document.getElementById("lblCount");
+
+                cities.forEach(function(city){
+                    let option = document.createElement("option");
+                    option.value = city;
+                    option.textContent = city;
+                    cityName.appendChild(option);
+                })
+
+                cityCount.textContent = `Total Number of cities is : ${cities.length}`;
+
+            }
+            
+            function addCity() {
+                const city = document.getElementById("txtCity");
+                let cityName = city.value;
+                alert(` ${city.value} added to list`);
+                if(cities.indexOf(cityName) == -1){
+                    cities.push(cityName);
+                    document.getElementById("lstCities").innerHTML = '';
+                    loadCities();
+                }
+                city.value='';
+                
+            }
+            
+     </script>
+
 </head>
-<body>
+<body class="container-fluid" onload="loadCities()">
+    <h3 class="mt-3">Array Manipulation</h3>
 
-  <div class="container-box">
-    <h1 class="text-center">Array Manipulation</h1>
+    <div class="w-25 m-3">
 
-   <div>
-    <label class="form-label">Add City</label>
-    <div class="input-group mb-3">
-      <input type="text" id="cityInput" class="form-control" placeholder="Enter city name" />
-      <button id="addCityBtn" class="btn btn-primary">Add City</button>
-   </div>
+        <!-- Container to enter city details -->
+        <div>
+            <label for="" class="form-label">Add City</label>
+            <div class="input-group">
+                <input type="text" name="" id="txtCity" class="form-control">
+                <button class="btn btn-primary" onclick = 'addCity()'>ADD</button>
+            </div>
+        </div>
 
-   <label class="mt-3 d-block mb-2">Select City</label>
-<div class="form-inline mb-3 gap-2">
-      <button id="sortAsc" class="btn btn-success">
-        <i class="bi bi-sort-alpha-down"></i>
-      </button>
-      <button id="sortDesc" class="btn btn-success">
-        <i class="bi bi-sort-alpha-up"></i>
-      </button>
+        <!-- Drop down to keep city entered by the user-->
+        <div class="mt-3">
+
+            <label for="" class="form-label">Select city</label>
+
+            <!-- container to display sorting options-->
+            <div class="mt-2 mb-3">
+                <button class="bi bi-sort-alpha-up btn btn-success"></button>
+                <button class="bi bi-sort-alpha-down btn btn-info"></button>
+            </div>
+
+            <!-- Container to keep drop Down-->
+            <div>
+                <select name="cities" size="3" id="lstCities" class="form-select">
+                        <!-- city should be entered dynamically-->
+                </select>
+
+                <label for="" class= "form-label fw-bold mt-3" id="lblCount">
+                        <!--container to display the count-->
+                </label>
+            </div>
+
+            <!-- Container to keep buttons-->
+            <div>
+                <button class="btn btn-danger bi bi-trash-fill"> Remove city</button>
+                <button class="btn btn-danger bi bi-trash-fill"> Clear All</button>
+            </div>
+
+        </div>
+
     </div>
-
-    <select id="cityDropdown" class="form-control">
-      <option disabled selected>Select a city</option>
-    </select>
-
-    <div class="mt-3">
-      <button id="removeCityBtn" class="btn btn-danger">Remove City</button>
-      <button id="clearCitiesBtn" class="btn btn-warning">Clear Cities</button>
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    
-  </script>
 </body>
 </html>
