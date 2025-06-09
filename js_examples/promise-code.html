@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=[device-width], initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("order taken from customer");
+        let order = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                let isOrderReady = true; // Simulating order status
+                if (isOrderReady) {
+                    resolve("Order is ready for pickup");
+                } else {
+                    reject("Chef is not eligible to prepare the order");
+                }
+            }, 2000); // Simulating a 2-second delay
+        });
+
+        order.then(function(output){
+            console.log("Status of order: " + output);
+            
+        }).catch(function(error){
+            console.log("Error: " + error);
+        });
+        
+        console.log("Waiter is serving the water to the customer");
+        
+    </script>
+</body>
+</html>
