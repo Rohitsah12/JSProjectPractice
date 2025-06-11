@@ -12,7 +12,23 @@
 
       let response=await fetch(URL)
       let products=await response.json();
-      
+      products.forEach(element => {
+        Object.keys(element).forEach(key=>{
+            console.log(key);
+        })
+        console.log(Object.keys(element).length);
+
+        delete element.Stock
+        console.log('***********After deletion***************');
+        
+
+        Object.keys(element).forEach(key=>{
+            console.log(key);
+        })
+        console.log(Object.keys(element).length);
+        
+        
+      });
     }
     </script>
 </head>
