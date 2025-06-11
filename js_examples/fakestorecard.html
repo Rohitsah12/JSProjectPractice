@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jewelry Products</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body onload="loadData()" class="bg-light">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Jewelry Collection</h2>
+    <div class="row" id="cardContainer">
+      <!-- Cards will be appended here -->
+    </div>
+  </div>
+
+  <script>
+    async function loadData() {
+      try {
+        let URL = "https://fakestoreapi.com/products/category/jewelery";
+        let response = await fetch(URL);
+        let products = await response.json();
+
+        let container = document.getElementById("cardContainer");
+        container.innerHTML = ""; // Clear if already exists
+
+        products.forEach((element) => {
+          let cardHTML = `
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <img src="${element.image}" class="card-img-top p-3" alt="${element.title}" style="height: 250px; object-fit: contain;">
+                <div class="card-header bg-primary text-white fw-semibold">
+                  ${element.title}
+                </div>
+                <div class="card-body bg-white">
+                  <p class="card-text text-muted">${element.description}...</p>
+                </div>
+                <div class="card-footer bg-light d-flex justify-content-between align-items-center">
+                  <strong>Rating:</strong>
+                  <span class="badge bg-success">${element.rating.rate}</span>
+                </div>
+              </div>
+            </div>
+          `;
+          container.insertAdjacentHTML("beforeend", cardHTML);
+        });
+      } catch (error) {
+        console.log("API ERROR", error);
+      }
+    }
+  </script>
+</body>
+</html>
