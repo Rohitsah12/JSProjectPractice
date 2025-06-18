@@ -17,7 +17,15 @@
         function loadTime(){
             let now = new Date();
             document.getElementById("cal").textContent = now.toLocaleDateString();
-            document.getElementById("clock").textContent = now.toLocaleTimeString();
+            document.getElementById("clock").textContent = now.toLocaleTimeString();  
+
+
+            let hours=now.getHours();
+            if(hours>12 ){
+                document.getElementById('msg').textContent='Good Evening'
+            }
+
+
         }
     </script>
   </head>
@@ -34,5 +42,8 @@
         <span class="bi bi-clock me-3" id="clock"></span>
       </div>
     </header>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <p id="msg" class="fw-bold fs-2 text-primary"></p>
+    </div>
   </body>
 </html>
