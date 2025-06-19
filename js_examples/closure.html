@@ -6,23 +6,32 @@
     <title>Document</title>
 </head>
 <body>
+    <button>Cancel Button</button>
+    <h1></h1>
     <script>
-        function x(){
-            for(var i=1;i<=5;i++){
-                function close(a){
-                    setTimeout(() => {
-                        console.log(a);
-                    }, a*1000);
+        function printMsg1(){
+            console.log('Hello User');
+            document.querySelector('h1').textContent='Hello User'
             
-                }
-                close(i)
-            }
-           
-           
-            
-
         }
-        x();
+        function printMsg2(){
+            console.log('Hiee User');
+            document.querySelector('h1').textContent='Hiee User'
+            
+        }
+        function printMsg3(){
+            console.log('Byee User');
+            document.querySelector('h1').textContent='Byee User'
+            
+        }
+
+        setTimeout(printMsg1,3000);
+        let id=setTimeout(printMsg2,6000);
+        setTimeout(printMsg3,9000);
+        document.querySelector('button').addEventListener('click',function(){
+            clearTimeout(id);
+        })
+
     </script>
 </body>
 </html>
