@@ -7,21 +7,21 @@
 </head>
 <body>
     <script>
-        console.log("program");
-        try{
-            let json='{"name":"Sachin","age":51}'
-            let user=JSON.parse(json);
-            console.log(user.name);
+        class DenonminatorBynumerator extends Error{
+            constructor(msg){
+                super(msg)
+            }
         }
-        catch(err){
-            console.log(err.message);
+
+        function divide(a,b){
+            if(b>a){
+                throw new DenonminatorBynumerator("b can't be greater than a")
+            }
+            console.log("result is ",(a/b));
             
         }
-        finally{
-            console.log("Execution completed");
-            
-        }
-        
+
+        divide(10,25)
     </script>
 </body>
 </html>
