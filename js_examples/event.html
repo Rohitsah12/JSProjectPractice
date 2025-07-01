@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contest Calendar - July 2025</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .day {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 8px;
+      height: 150px;
+      overflow-y: auto;
+    }
+
+    .date {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .contest {
+      margin-bottom: 6px;
+      padding: 4px;
+      background-color: #f0f8ff;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .contest a {
+      text-decoration: none;
+      color: #0077cc;
+    }
+
+    .loading {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contest Calendar - July 2025</h1>
+  <div id="calendar" class="calendar"></div>
+  <div id="loading" class="loading">Loading contests...</div>
+
+  <script>
+    const username = "RohitKumarsah";
+    const apiKey = "ff0f4599aa59e360096c1d5eb6213bd005e2705e";
+
+    const startDate = "2025-07-01T00:00:00";
+    const endDate = "2025-07-31T23:59:59";
+
+    const calendarEl = document.getElementById("calendar");
+    const loadingEl = document.getElementById("loading");
+
+    // Initialize empty days for July
+    const daysInJuly = 31;
+    const dayBoxes = [];
+
+    for (let i = 1; i <= daysInJuly; i++) {
+      const dayBox = document.createElement("div");
+      dayBox.className = "day";
+      dayBox.dataset.day = i;
+
+      const dateEl = document.createElement("div");
+      dateEl.className = "date";
+      dateEl.textContent = `July ${i}`;
+      dayBox.appendChild(dateEl);
+
+      dayBoxes.push(dayBox);
+      calendarEl.appendChild(dayBox);
+    }
+
+    async function fetchContests() {
+      const url = `https://clist.by/api/v3/contest/?username=${username}&api_key=${apiKey}&start__gte=${startDate}&end__lte=${endDate}&limit=100&order_by=start`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        
+
+        if (data && data.objects) {
+          renderContests(data.objects);
+        }
+      } catch (err) {
+        loadingEl.textContent = "Failed to load data.";
+        console.error(err);
+      } finally {
+        loadingEl.style.display = "none";
+      }
+    }
+
+function renderContests(contests) {
+  const allowedSites = [
+    'codechef.com',
+    'codeforces.com',
+    'leetcode.com',
+    'atcoder.jp',
+    'geekforgeeks.com'
+  ];
+
+  contests.forEach(contest => {
+    if (!allowedSites.includes(contest.host)) return;
+
+    const startDate = new Date(contest.start);
+    const day = startDate.getDate();
+
+    const box = dayBoxes[day - 1];
+
+    const contestDiv = document.createElement("div");
+    contestDiv.className = "contest";
+
+    contestDiv.innerHTML = `
+      <strong>${contest.event}</strong><br>
+      Site: ${contest.host}<br>
+      Start: ${startDate.toLocaleString()}<br>
+      Duration: ${formatDuration(contest.duration)}<br>
+      <a href="${contest.href}" target="_blank">Link</a>
+    `;
+
+    box.appendChild(contestDiv);
+  });
+}
+
+function formatDuration(seconds) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  return `${hours}h ${minutes}m`;
+}
+
+    fetchContests();
+  </script>
+</body>
+</html>
