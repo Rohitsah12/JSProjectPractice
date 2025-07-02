@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Slideshow</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+  />
+  <style>
+    .card {
+      width: 500px;
+      height: 500px;
+    }
+    #imgProduct {
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body onload="loadBody()">
+  <div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card text-center">
+      <div class="card-header border border-1 w-100" id="lblTitle"></div>
+      <div class="card-body border border-1 w-100">
+        <div id="lblPrice" class="text-end mb-2"></div>
+        <img id="imgProduct" height="400" width="400" />
+      </div>
+      <div class="card-footer border border-1 w-100 d-flex justify-content-center gap-2">
+        <span class="btn btn-primary" id="btnPause"><i class="bi bi-pause-fill"></i></span>
+        <span class="btn btn-danger" id="btnPlay"><i class="bi bi-play-fill"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let productId = 1;
+    const maxProducts = 20; 
+    let intervalId = null;
+
+    function loadBody() {
+      loadCard(productId);
+
+      document.getElementById("btnPlay").addEventListener("click", () => {
+        if (intervalId === null) {
+          intervalId = setInterval(() => {
+            productId = productId < maxProducts ? productId + 1 : 1;
+            loadCard(productId);
+          }, 1000);
+        }
+      });
+
+      document.getElementById("btnPause").addEventListener("click", () => {
+        clearInterval(intervalId);
+        intervalId = null;
+      });
+    }
+
+    async function loadCard(productId) {
+      const URL = `https://fakestoreapi.com/products/${productId}`;
+      try {
+        const response = await fetch(URL);
+        const product = await response.json();
+
+        document.getElementById('lblTitle').textContent = product.title;
+        document.getElementById('lblPrice').innerHTML = `
+          <span class="bi bi-tag-fill"></span>
+          <span class="bi bi-currency-dollar">${product.price}</span>
+        `;
+        document.getElementById('imgProduct').src = product.image;
+      } catch (error) {
+        console.error("Error loading product:", error);
+        document.getElementById('lblTitle').textContent = "Product not found.";
+        document.getElementById('lblPrice').textContent = "";
+        document.getElementById('imgProduct').src = "";
+      }
+    }
+  </script>
+</body>
+</html>
