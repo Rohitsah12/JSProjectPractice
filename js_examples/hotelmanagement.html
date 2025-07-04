@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Registration Form</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+</head>
+<body oninput="checkFormValidity()">
+  <div class="text-center border border-1 border-black bg-light fw-bold fs-4 py-3">
+    Hotel Registration Form
+  </div>
+
+  <div class="container py-4">
+    <div class="accordion" id="accordionExample">
+      <!-- Customer Info -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Customer Info
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="mb-2">
+              <label class="form-label">Customer Name</label>
+              <input type="text" class="form-control" id="customerName" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Check-in Date</label>
+              <input type="date" class="form-control" id="checkInDate" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Total No. of Days</label>
+              <input type="number" class="form-control" id="totalDays" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Total No. of Persons</label>
+              <input type="number" class="form-control" id="totalPerson" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Select Room -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Select Room Type
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body d-flex justify-content-around">
+            <div class="text-center">
+              <img src="https://via.placeholder.com/100x100.png?text=Deluxe" class="img-thumbnail" />
+              <div>
+                <input type="radio" name="room" id="deluxeRoom" value="Deluxe Room" data-img="https://via.placeholder.com/100x100.png?text=Deluxe" />
+                <label for="deluxeRoom">Deluxe Room</label>
+              </div>
+            </div>
+            <div class="text-center">
+              <img src="https://via.placeholder.com/100x100.png?text=Suite" class="img-thumbnail" />
+              <div>
+                <input type="radio" name="room" id="suiteRoom" value="Suite Room" data-img="https://via.placeholder.com/100x100.png?text=Suite" />
+                <label for="suiteRoom">Suite Room</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Ons (Checkbox) -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Select Amenities
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body d-flex justify-content-around">
+            <div class="text-center">
+              <img src="https://via.placeholder.com/100x100.png?text=AC" class="img-thumbnail" />
+              <div>
+                <input type="checkbox" class="addon" id="addon1" value="AC" />
+                <label for="addon1">A/C</label>
+              </div>
+            </div>
+            <div class="text-center">
+              <img src="https://via.placeholder.com/100x100.png?text=Locker" class="img-thumbnail" />
+              <div>
+                <input type="checkbox" class="addon" id="addon2" value="Locker" />
+                <label for="addon2">Locker</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advance -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Advance Amount 
+          </button>
+        </h2>
+        <div class="accordion-collapse collapse" id="collapseFour" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <label class="form-label">Advance Amount</label>
+            <input type="number" class="form-control" id="advancedAmount" />
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <!-- Confirm Button -->
+      <div class="text-center">
+        <button class="btn btn-success" id="confirmBtn" data-bs-toggle="modal" data-bs-target="#orderModal" onclick="showOrderSummary()" disabled>Register</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Summary Modal -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="orderModalLabel">Order Summary</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-8">
+              <p><strong>Name:</strong> <span id="summaryName"></span></p>
+              <p><strong>Check-in Date:</strong> <span id="summaryDate"></span></p>
+              <p><strong>Total No. of Days:</strong> <span id="summaryDays"></span></p>
+              <p><strong>Total No. of Persons:</strong> <span id="summaryPersons"></span></p>
+              <p><strong>Room Type:</strong> <span id="summaryRoom"></span></p>
+              <p><strong>Amenities:</strong> <span id="summaryAmenities"></span></p>
+              <p><strong>Total Amount:</strong> ₹<span id="summaryTotal"></span></p>
+              <p><strong>Advance Amount:</strong> ₹<span id="summaryAdvance"></span></p>
+              <p><strong>Balance Amount:</strong> ₹<span id="summaryBalance"></span></p>
+            </div>
+            <div class="col-4">
+              <img id="summaryImage" src="" alt="Room Image" class="img-fluid border rounded" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function checkFormValidity() {
+      const name = document.getElementById("customerName").value.trim();
+      const date = document.getElementById("checkInDate").value;
+      const days = document.getElementById("totalDays").value;
+      const persons = document.getElementById("totalPerson").value;
+      const roomSelected = document.querySelector("input[name='room']:checked");
+      const advance = document.getElementById("advancedAmount").value;
+
+      const allFilled = name && date && days && persons && roomSelected && advance;
+      document.getElementById("confirmBtn").disabled = !allFilled;
+    }
+
+    function showOrderSummary() {
+      const name = document.getElementById("customerName").value.trim();
+      const date = document.getElementById("checkInDate").value;
+      const days = parseInt(document.getElementById("totalDays").value);
+      const persons = parseInt(document.getElementById("totalPerson").value);
+      const advance = parseInt(document.getElementById("advancedAmount").value);
+      const room = document.querySelector("input[name='room']:checked");
+
+      let roomRate = room.value === "Deluxe Room" ? 2500 : 4000;
+
+      const addonElems = document.querySelectorAll(".addon:checked");
+      let addonNames = [];
+      let addonPerDayCost = 0;
+
+      addonElems.forEach(addon => {
+        addonNames.push(addon.value);
+        if (addon.value === "AC") addonPerDayCost += 1000;
+        if (addon.value === "Locker") addonPerDayCost += 300;
+      });
+
+      const baseCost = (roomRate + addonPerDayCost) * days;
+      const extraPersonCost = persons > 2 ? (persons - 2) * 1000 : 0;
+      const totalCost = baseCost + extraPersonCost;
+      const balance = totalCost - advance;
+
+      document.getElementById("summaryName").innerText = name;
+      document.getElementById("summaryDate").innerText = date;
+      document.getElementById("summaryDays").innerText = days;
+      document.getElementById("summaryPersons").innerText = persons;
+      document.getElementById("summaryRoom").innerText = room.value;
+      document.getElementById("summaryAmenities").innerText = addonNames.join(", ") || "None";
+      document.getElementById("summaryTotal").innerText = totalCost;
+      document.getElementById("summaryAdvance").innerText = advance;
+      document.getElementById("summaryBalance").innerText = balance;
+      document.getElementById("summaryImage").src = room.dataset.img;
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
