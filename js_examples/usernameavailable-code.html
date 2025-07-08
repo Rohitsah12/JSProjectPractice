@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Register User</h1>
+    <dl>
+        <dt>UserName</dt>
+        <dd><input type="text"  id="txtUserName"></dd>
+        <dd id="msg"></dd>
+    </dl>
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            document.getElementById("txtUserName").addEventListener("keyup",function(){
+                let data=this.value.trim();
+                const URL='../data/users.json'
+                let flg=false;
+                let msg=document.getElementById("msg")
+
+                fetch(URL).then(function(response){
+                    return response.json();
+                }).then(function(users){
+
+                    for (const user of users) {
+                        if(user.username===data){
+                            flg=true;
+                            break;
+                        }
+                    }
+
+                    if(flg){
+                        msg.innerHTML="Username already taken try again".fontcolor("red")
+                    }
+                    else{
+                        msg.innerHTML="Username available".fontcolor("green")
+                    }
+                })
+                
+            })
+        })
+
+    </script>
+</body>
+</html>
